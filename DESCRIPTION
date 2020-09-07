@@ -12,12 +12,15 @@ Description: Implements Kernel-based Regularized Least Squares (KRLS), a
     of a Tikhonov regularization problem, using Gaussian kernels as radial basis
     functions. For further details see Hainmueller and Hazlett (2014).
 Imports:
-    Rcpp (>= 0.12.5),
-    RSpectra
-LinkingTo: Rcpp, RcppArmadillo
+    Rcpp (>= 1.0.4.6),
+    RSpectra,
+    RcppEigen,
+    RcppParallel
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppParallel
 License: GPL (>= 2)
 Suggests:
     testthat,
     lattice
 URL: https://www.r-project.org, https://www.stanford.edu/~jhain/
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0
+SystemRequirements: GNU make

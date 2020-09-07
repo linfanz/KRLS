@@ -61,3 +61,23 @@ solve_for_d_ls_w <- function(y, U, D, w, lambda) {
     .Call(`_KRLS2_solve_for_d_ls_w`, y, U, D, w, lambda)
 }
 
+mult <- function(A, B) {
+    .Call(`_KRLS2_mult`, A, B)
+}
+
+RD_solver <- function(R, D, lambda, y) {
+    .Call(`_KRLS2_RD_solver`, R, D, lambda, y)
+}
+
+krls_solver <- function(y, K, lambda) {
+    .Call(`_KRLS2_krls_solver`, y, K, lambda)
+}
+
+kernel_parallel <- function(X, b) {
+    .Call(`_KRLS2_kernel_parallel`, X, b)
+}
+
+kernel_parallel_2 <- function(X, Y, b) {
+    .Call(`_KRLS2_kernel_parallel_2`, X, Y, b)
+}
+

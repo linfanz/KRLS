@@ -2,6 +2,7 @@
 // Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <Rcpp.h>
 
 using namespace Rcpp;
@@ -217,6 +218,70 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// mult
+SEXP mult(const Eigen::Map<Eigen::MatrixXd> A, Eigen::Map<Eigen::MatrixXd> B);
+RcppExport SEXP _KRLS2_mult(SEXP ASEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type A(ASEXP);
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type B(BSEXP);
+    rcpp_result_gen = Rcpp::wrap(mult(A, B));
+    return rcpp_result_gen;
+END_RCPP
+}
+// RD_solver
+List RD_solver(const Eigen::Map<Eigen::MatrixXd> R, const Eigen::Map<Eigen::MatrixXd> D, const double& lambda, const Eigen::Map<Eigen::MatrixXd> y);
+RcppExport SEXP _KRLS2_RD_solver(SEXP RSEXP, SEXP DSEXP, SEXP lambdaSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type R(RSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type D(DSEXP);
+    Rcpp::traits::input_parameter< const double& >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(RD_solver(R, D, lambda, y));
+    return rcpp_result_gen;
+END_RCPP
+}
+// krls_solver
+List krls_solver(const Eigen::Map<Eigen::MatrixXd> y, const Eigen::Map<Eigen::MatrixXd> K, const double& lambda);
+RcppExport SEXP _KRLS2_krls_solver(SEXP ySEXP, SEXP KSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type K(KSEXP);
+    Rcpp::traits::input_parameter< const double& >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(krls_solver(y, K, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kernel_parallel
+Rcpp::NumericMatrix kernel_parallel(Rcpp::NumericMatrix X, const double b);
+RcppExport SEXP _KRLS2_kernel_parallel(SEXP XSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(kernel_parallel(X, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kernel_parallel_2
+Rcpp::NumericMatrix kernel_parallel_2(Rcpp::NumericMatrix X, Rcpp::NumericMatrix Y, const double b);
+RcppExport SEXP _KRLS2_kernel_parallel_2(SEXP XSEXP, SEXP YSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(kernel_parallel_2(X, Y, b));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_KRLS2_krls_gr_trunc", (DL_FUNC) &_KRLS2_krls_gr_trunc, 7},
@@ -234,6 +299,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_KRLS2_pwmfx", (DL_FUNC) &_KRLS2_pwmfx, 7},
     {"_KRLS2_solve_for_d_ls", (DL_FUNC) &_KRLS2_solve_for_d_ls, 4},
     {"_KRLS2_solve_for_d_ls_w", (DL_FUNC) &_KRLS2_solve_for_d_ls_w, 5},
+    {"_KRLS2_mult", (DL_FUNC) &_KRLS2_mult, 2},
+    {"_KRLS2_RD_solver", (DL_FUNC) &_KRLS2_RD_solver, 4},
+    {"_KRLS2_krls_solver", (DL_FUNC) &_KRLS2_krls_solver, 3},
+    {"_KRLS2_kernel_parallel", (DL_FUNC) &_KRLS2_kernel_parallel, 2},
+    {"_KRLS2_kernel_parallel_2", (DL_FUNC) &_KRLS2_kernel_parallel_2, 3},
     {NULL, NULL, 0}
 };
 
