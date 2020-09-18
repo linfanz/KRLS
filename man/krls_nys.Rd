@@ -52,7 +52,9 @@ using the model is needed}
 scaling up KRLS with Nystrom approximation
 }
 \examples{
+\dontrun{
 fit_nys <- krls_nys(X, y, lambda = 1)
 y_h <- predict.krls_nys(mod = fit_nys, Xnew=X_test)
 inf_nys <- inference.krls_nys(fit_nys)
+}
 }

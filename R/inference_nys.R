@@ -25,6 +25,7 @@ inference.krls_nys <- function(mod){
   # vpd <- 4*sum(ZR %*% vco %*% t(ZR))/nb^2  
   
   # derivatives for 
+  n <- nrow(X)
   nb <- n*mod$b
   p <- ncol(mod$X_scaled)
   # Z[[i]] n*p
