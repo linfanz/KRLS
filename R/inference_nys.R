@@ -4,7 +4,9 @@ inference.krls_nys <- function(mod){
   M <- mod$M
   R <- mod$R
   sigmasq <- mod$mse
-  X <- mod$X_scaled
+  X <- scale(mod$X_scaled,
+        scale = attributes(mod$X_scaled)$`scaled:scale`)
+  # X <- scale(mod$X_scaled)
   I <- mod$I
   m <- length(I)
   Minv <- solve(M) # could potentially be faster
@@ -52,5 +54,7 @@ inference.krls_nys <- function(mod){
     avePD_var[k] <- 4*sum(ZR %*% vco %*% t(ZR))/nb^2
   }
   
-  return(list(vco=vco, vfitted=vfitted, avePD=avePD, avePD_var = avePD_var))
+  return(list(vco=vco, vfitted=vfitted, 
+              avePD=avePD*attributes(mod$y_scaled)$`scaled:scale`,
+              avePD_var = avePD_var))
 }

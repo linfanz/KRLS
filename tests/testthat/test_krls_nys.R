@@ -44,3 +44,8 @@ head(inf_krls$vcov.c[1, ])
 head(inf_nys$vco[1, ])
 norm(inf_nys$vco - inf_krls$vcov.c, type = "F")
 
+inf_krls$avgderivatives
+inf_nys$avePD
+
+inf_krls$var.avgderivatives
+inf_nys$avePD_var
