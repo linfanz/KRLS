@@ -1,4 +1,3 @@
-# variance of coefficient
 #' @export
 inference.krls_nys <- function(mod){
   M <- mod$M

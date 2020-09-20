@@ -4,30 +4,29 @@
 #' 
 #' @param X_init explanatory variable, must be a matrix
 #' @param y_init response variable, must be a matrix
-#' @param I index set of selected data points from X_init, 
+#' @param I index set of selected data points from X_init,
 #' could be assigned or adaptively selected by the algorithm
 #' @param lambda regularization parameter, could be assigned or adaptively selected by the algorithm
 #' @param lambdaset if lambda not given, it will be selected from this candidate set
 #' @param folds number of folds in cross validation to select hyperparameters
 #' @param m0 number of data points randomly selected to perform the pilot testing, a full KRLS,
 #'  in order to determine set I
-#' @param r0 number of times for pilot testing, the one with the minimum MSE will 
-#' be selected 
+#' @param r0 number of times for pilot testing, the one with the minimum MSE will
+#' be selected
 #' @param p0 a data point will be included in I if in the pilot testing it has squared residual
 #' larger than p0*max(residuals)
 #' @param a0 besides data points produce large residuals, we also randomly select from the rest of
 #' data with size a0 times larger than those with large residuals
-#' @param scaling indicate if data has been scaled or not, recommend to set to TRUE if prediction 
+#' @param scaling indicate if data has been scaled or not, recommend to set to TRUE if prediction
 #' using the model is needed
 #' 
-#' @examples 
-#'\dontrun{
+#' @examples
+#' \dontrun{
 #' fit_nys <- krls_nys(X, y, lambda = 1)
 #' y_h <- predict.krls_nys(mod = fit_nys, Xnew=X_test)
 #' inf_nys <- inference.krls_nys(fit_nys)
 #' }
 #' @export
-
 krls_nys <- function(X_init, y_init, 
                      b = NULL, 
                      I = NULL, 

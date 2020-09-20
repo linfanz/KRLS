@@ -1,5 +1,3 @@
-context("krls_nys works properly")
-
 Ntru <- 50
 d <- 5 # number of covariates
 # set all the bandwidth to be d
@@ -15,7 +13,7 @@ sgm <- sqrt(2)*sd(ftru(Xtru))
 # X <- scale( matrix(runif(n*d), nrow = n, ncol = d) )
 # y_pure  <- ftru(X)
 # y <- y_pure + rnorm(n, sd = sgm)
-# 
+#
 # fit_krls_nys <- krls_nys(y, X, scaling = F)
 # X_test <- matrix(runif(200*d), nrow = 200, ncol = d)
 # yh <- predict.krls_nys(mod = fit_krls_nys, Xnew=X_test, dh= T, scaling = F)
@@ -25,7 +23,7 @@ n <- 300
 X <- matrix(runif(n*d), nrow = n, ncol = d)
 y_pure <- ftru(scale(X))
 y <- y_pure + rnorm(n, sd = sgm)
-# Nystrom 
+# Nystrom
 fit_nys <- krls_nys(X, y,  I = 1:n, b = d, lambda = 1)
 fit_krls <- krls(X,y, b = d, lambda = 1)
 # compare the coefficients
@@ -37,7 +35,7 @@ head(fit_nys$yh)
 head(fit_krls$fitted)
 mean((fit_nys$yh - fit_krls$fitted)^2)
 
-# inference items 
+# inference items
 inf_krls <- inference.krls2(fit_krls)
 inf_nys <- inference.krls_nys(fit_nys)
 head(inf_krls$vcov.c[1, ])
@@ -49,3 +47,4 @@ inf_nys$avePD
 
 inf_krls$var.avgderivatives
 inf_nys$avePD_var
+
