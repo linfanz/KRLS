@@ -49,6 +49,7 @@ krls_basic <- function(y_init, X_init, b = NULL, lambda = NULL,
     mod
 }
 
+#' @export
 predict.krls_basic <- function(mod, Xnew=NA, dh = F, scaling = T) {
     if (any(is.na(Xnew))) {
         return(mod$yh)

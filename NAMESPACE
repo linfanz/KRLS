@@ -2,6 +2,7 @@
 
 S3method(plot,krls2)
 S3method(predict,krls2)
+S3method(predict,krls_basic)
 S3method(predict,krls_nys)
 export(Ktrunc)
 export(bsearch)
