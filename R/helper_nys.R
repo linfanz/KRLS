@@ -1,3 +1,4 @@
+#' @export
 krls_basic <- function(y_init, X_init, b = NULL, lambda = NULL, 
                  lambdaset = 10^(seq(-4, 1, length.out = 6)), 
                  folds = 5, scaling = T) {
