@@ -1,4 +1,10 @@
-# variance of coefficient
+#' Inference on the Nystrom KRLS
+#' @param mod object \code{krls_nys}, output of [krls_nys()]
+#' @return A list of result 
+#' \item{vco}{covariance matrix of coefficients} 
+#' \item{vfitted}{covariance matrix of fitted response variable}
+#' \item{avePD}{average partial derivatives for each explanatory variable}
+#' \item{avePD_var}{variance of average partial derivatives for each explanatory variable}
 #' @export
 inference.krls_nys <- function(mod){
   M <- mod$M
