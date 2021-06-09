@@ -2,6 +2,7 @@
 #' 
 #' scaling up KRLS with Nystrom approximation
 #' 
+
 #' @param X an \eqn{n \times p} matrix containing explanatory variables
 #' @param y an \eqn{n \times 1} matrix containing response variable
 #' @param b bandwidth of the kernel, set to be the number of columns in \code{X} if not given
@@ -12,13 +13,13 @@
 #' @param folds number of folds in cross validation to select hyperparameters
 #' @param m0 number of data points randomly selected to perform the pilot testing, a full KRLS,
 #'  in order to determine set I
-#' @param r0 number of times for pilot testing, the one with the minimum MSE will 
-#' be selected 
+#' @param r0 number of times for pilot testing, the one with the minimum MSE will
+#' be selected
 #' @param p0 a data point will be included in I if in the pilot testing it has squared residual
 #' larger than p0*max(residuals)
 #' @param a0 besides data points produce large residuals, we also randomly select from the rest of
 #' data with size a0 times larger than those with large residuals
-#' @param scaling indicate if data has been scaled or not, recommend to set to TRUE if prediction 
+#' @param scaling indicate if data has been scaled or not, recommend to set to TRUE if prediction
 #' using the model is needed
 #' 
 #' @return A list of result

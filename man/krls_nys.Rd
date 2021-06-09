@@ -24,9 +24,13 @@ krls_nys(
 
 \item{y}{an \eqn{n \times 1} matrix containing response variable}
 
+<<<<<<< HEAD
 \item{b}{bandwidth of the kernel, set to be the number of columns in \code{X} if not given}
 
 \item{I}{index set of selected data points from X, 
+=======
+\item{I}{index set of selected data points from X_init,
+>>>>>>> a593082d80d8e20824a09c788c3351680f2f5e7b
 could be assigned or adaptively selected by the algorithm}
 
 \item{lambda}{regularization parameter, could be assigned or adaptively selected by the algorithm}
@@ -38,7 +42,7 @@ could be assigned or adaptively selected by the algorithm}
 \item{m0}{number of data points randomly selected to perform the pilot testing, a full KRLS,
 in order to determine set I}
 
-\item{r0}{number of times for pilot testing, the one with the minimum MSE will 
+\item{r0}{number of times for pilot testing, the one with the minimum MSE will
 be selected}
 
 \item{p0}{a data point will be included in I if in the pilot testing it has squared residual
@@ -47,7 +51,7 @@ larger than p0*max(residuals)}
 \item{a0}{besides data points produce large residuals, we also randomly select from the rest of
 data with size a0 times larger than those with large residuals}
 
-\item{scaling}{indicate if data has been scaled or not, recommend to set to TRUE if prediction 
+\item{scaling}{indicate if data has been scaled or not, recommend to set to TRUE if prediction
 using the model is needed}
 }
 \value{

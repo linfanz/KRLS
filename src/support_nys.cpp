@@ -1,16 +1,13 @@
 #include <Rcpp.h>
 #include <RcppEigen.h>
 #include <RcppParallel.h>
-// [[Rcpp::depends(RcppEigen,RcppParallel)]]
-using namespace Rcpp; 
-using namespace RcppParallel;
-using namespace RcppEigen;
 
-using Eigen::Map;
-using Eigen::SparseMatrix;
-using Eigen::LLT;
-using Eigen::MatrixXd;
-using Eigen::Lower;
+// [[Rcpp::depends(RcppEigen)]]
+// [[Rcpp::depends(RcppParallel)]]
+
+using namespace Rcpp; 
+using namespace RcppEigen;
+using namespace RcppParallel;
 
 // matrix multiplication, fast
 // [[Rcpp::export]]
@@ -21,15 +18,15 @@ SEXP mult(const Eigen::Map<Eigen::MatrixXd> A, Eigen::Map<Eigen::MatrixXd> B){
 
 // [[Rcpp::export]]
 List RD_solver(const Eigen::Map<Eigen::MatrixXd> R,
-                const Eigen::Map<Eigen::MatrixXd> D,
-                const double& lambda,
-                const Eigen::Map<Eigen::MatrixXd> y){
+               const Eigen::Map<Eigen::MatrixXd> D,
+               const double& lambda,
+               const Eigen::Map<Eigen::MatrixXd> y){
   const int m = R.cols();
   Eigen::MatrixXd Rt = R.adjoint();
   Eigen::MatrixXd RtR = Rt * R;
   Eigen::MatrixXd M = RtR + lambda*D;
   M = M + 1e-6*Eigen::MatrixXd::Identity(m,m); // add regularizer for stability
-  LLT<Eigen::MatrixXd> llt; // set up solver for the linear system
+  Eigen::LLT<Eigen::MatrixXd> llt; // set up solver for the linear system
   llt.compute(M);
   Eigen::MatrixXd b = Rt * y;
   Eigen::MatrixXd dh = llt.solve(b);
@@ -45,12 +42,12 @@ List krls_solver(const Eigen::Map<Eigen::MatrixXd> y,
                  const double& lambda) {
   const int n = K.rows();
   Eigen::MatrixXd A = K + lambda*Eigen::MatrixXd::Identity(n, n);
-
-  LLT<Eigen::MatrixXd> llt; // set up solver for the linear system
+  
+  Eigen::LLT<Eigen::MatrixXd> llt; // set up solver for the linear system
   llt.compute(A);
   Eigen::MatrixXd ch = llt.solve(y);
   Eigen::MatrixXd yh = K * ch;
-
+  
   return List::create(Named("ch") = ch,
                       Named("yh") = yh);
 }
@@ -91,7 +88,7 @@ struct Kernel : public Worker
         }
         out(i, j) = exp(-dist / b);
         out(j, i) = out(i, j);
-        }
+      }
       out(i, i) = 1;
     }
   }
@@ -127,9 +124,9 @@ struct Kernel_2 : public Worker
   
   // initialize with source and destination
   Kernel_2(const Rcpp::NumericMatrix X,
-         const Rcpp::NumericMatrix Y,
-         const double b,
-         Rcpp::NumericMatrix out) 
+           const Rcpp::NumericMatrix Y,
+           const double b,
+           Rcpp::NumericMatrix out) 
     : X(X), Y(Y), b(b), out(out) {}
   
   // calculate the kernel of the range of elements requested
@@ -169,3 +166,4 @@ Rcpp::NumericMatrix kernel_parallel_2(Rcpp::NumericMatrix X,
   // return the output matrix
   return out;
 }
+
