@@ -24,13 +24,9 @@ krls_nys(
 
 \item{y}{an \eqn{n \times 1} matrix containing response variable}
 
-<<<<<<< HEAD
 \item{b}{bandwidth of the kernel, set to be the number of columns in \code{X} if not given}
 
 \item{I}{index set of selected data points from X, 
-=======
-\item{I}{index set of selected data points from X_init,
->>>>>>> a593082d80d8e20824a09c788c3351680f2f5e7b
 could be assigned or adaptively selected by the algorithm}
 
 \item{lambda}{regularization parameter, could be assigned or adaptively selected by the algorithm}
